@@ -11,12 +11,15 @@ class ExploreRestaruant extends StatefulWidget {
   @override
   State<ExploreRestaruant> createState() => _ExploreRestaruantState();
 }
-
+ bool isDark = false;
 class _ExploreRestaruantState extends State<ExploreRestaruant> {
   @override
   Widget build(BuildContext context) {
+    isDark = Theme.of(context).brightness == Brightness.dark;
     return Scaffold(
-      backgroundColor: MyColors.C_FEFEFF,
+      backgroundColor: isDark
+        ? MyColors.C_0D0D0D
+        : MyColors.C_FEFEFF,
       body: SafeArea(
         child: Container(
           child: Column(children: [
@@ -34,27 +37,27 @@ class _ExploreRestaruantState extends State<ExploreRestaruant> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        buildNearestRestaurantItem(MyImages.image_vegan, "Vegan Resto", "12 Mins"),
+                        buildNearestRestaurantItem(isDark ? MyImages.image_vegan : MyImages.image_vegan, "Vegan Resto", "12 Mins"),
                         SizedBox(width: 15),
-                        buildNearestRestaurantItem(MyImages.image_healthy, "Healthy Food", "8 Mins"),
+                        buildNearestRestaurantItem(isDark ? MyImages.image_healthy_dark : MyImages.image_healthy_dark, "Healthy Food", "8 Mins"),
                       ],
                     ),
                     SizedBox(height: 50,),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        buildNearestRestaurantItem(MyImages.image_good_food, "Good Food", "12 Mins"),
+                        buildNearestRestaurantItem(isDark ? MyImages.image_good_food_dark : MyImages.image_good_food, "Good Food", "12 Mins"),
                         SizedBox(width: 15),
-                        buildNearestRestaurantItem(MyImages.image_smart, "Smart Resto", "8 Mins"),
+                        buildNearestRestaurantItem(isDark ? MyImages.image_smart_dark : MyImages.image_smart, "Smart Resto", "8 Mins"),
                       ],
                     ),
                     SizedBox(height: 50,),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        buildNearestRestaurantItem(MyImages.image_vegan_resto, "Vegan Resto", "15 Mins"),
+                        buildNearestRestaurantItem(MyImages.image_vegan_resto_dark, "Vegan Resto", "15 Mins"),
                         SizedBox(width: 15),
-                        buildNearestRestaurantItem(MyImages.image_healthy_food, "Healthy Food", "10 Mins"),
+                        buildNearestRestaurantItem(MyImages.image_healthy_food_dark, "Healthy Food", "10 Mins"),
                       ],
                     ),
                   ],

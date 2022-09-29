@@ -11,12 +11,15 @@ class ExploreMenu extends StatefulWidget {
   @override
   State<ExploreMenu> createState() => _ExploreMenu();
 }
-
+ bool isDark = false;
 class _ExploreMenu extends State<ExploreMenu> {
   @override
   Widget build(BuildContext context) {
+    isDark = Theme.of(context).brightness == Brightness.dark;
     return Scaffold(
-      backgroundColor: MyColors.C_FEFEFF,
+      backgroundColor: isDark
+        ? MyColors.C_0D0D0D
+        : MyColors.C_FEFEFF,
       body: SafeArea(
         child: Container(
           child: Column(children: [
@@ -55,7 +58,7 @@ Widget buildMenuItem(String name, String name2, String imagename, String price )
       padding: EdgeInsets.all(12),
       decoration: BoxDecoration(
         boxShadow: [
-          BoxShadow(color: Colors.black.withOpacity(0.05)),
+          BoxShadow(color: isDark ?Colors.grey.withOpacity(0.2) : Colors.black.withOpacity(0.05)),
         ],
         borderRadius: BorderRadius.all(Radius.circular(12)),
       ),

@@ -32,10 +32,15 @@ class MyImages {
   static const image_ice_cream = "assets/images/icecream.png";
   static const image_vegan = "assets/images/vegan.png";
   static const image_vegan_resto = "assets/images/vegan_resto.png";
+  static const image_vegan_resto_dark = "assets/images/vegan_resto_dark.png";
   static const image_healthy = "assets/images/healthy.png";
+  static const image_healthy_dark = "assets/images/healthy_dark.png";
   static const image_healthy_food = "assets/images/healthy_food.png";
+  static const image_healthy_food_dark = "assets/images/healthy_food_dark.png";
   static const image_good_food = "assets/images/good_food.png";
+  static const image_good_food_dark = "assets/images/good_food_dark.png";
   static const image_smart = "assets/images/smart.png";
+  static const image_smart_dark = "assets/images/smart_dark.png";
   static const image_menu1 = "assets/images/menu_1.png";
   static const image_menu2 = "assets/images/menu_2.png";
   static const image_menu3 = "assets/images/menu_3.png";

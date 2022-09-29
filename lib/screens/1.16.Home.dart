@@ -109,21 +109,21 @@ class _HomeState extends State<Home> {
                 width: double.infinity,
                 padding:
                 const EdgeInsets.symmetric(vertical: 0, horizontal: 0),
-                decoration: const BoxDecoration(
+                decoration: BoxDecoration(
                   image: DecorationImage(
                     image: AssetImage(isDark
-                    ? 
+                    ? MyImages.image_bg4_dark
                     : MyImages.image_bg4),
                     fit: BoxFit.cover,
                   ),
                   color: MyColors.C_53E88B,
-                  gradient: LinearGradient(
+                  gradient: const LinearGradient(
                     colors: [
                       MyColors.C_53E88B,
                       MyColors.C_15BE77,
                     ],
                   ),
-                  boxShadow: [
+                  boxShadow: const [
                     BoxShadow(
                       color: Colors.grey,
                       blurRadius: 0.4,
@@ -136,9 +136,12 @@ class _HomeState extends State<Home> {
                   children: [
                     Image.asset(MyImages.image_ice_cream),
                     Positioned(
-                      left: 160,
+                      left: 170,
                       top: 25,
-                      child: Text("Special Deal For\nOctober",style: MyStyles.bentonsansbold400.copyWith(fontSize: 17,color: MyColors.C_FEFEFF))
+                      child: Text("Special Deal For\nOctober",style: MyStyles.bentonsansbold400.copyWith(fontSize: 17,color: isDark 
+                      ? MyColors.C_0D0D0D
+                      : MyColors.C_FEFEFF),
+                      )
                     ),
                     Positioned(
                       bottom: 30,
@@ -192,9 +195,9 @@ class _HomeState extends State<Home> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      buildNearestRestaurantItem(MyImages.image_vegan, "Vegan Resto", "12 Mins"),
+                      buildNearestRestaurantItem(isDark ? MyImages.image_vegan : MyImages.image_vegan, "Vegan Resto", "12 Mins"),
                       SizedBox(width: 15),
-                      buildNearestRestaurantItem(MyImages.image_healthy, "Healthy Food", "8 Mins"),
+                      buildNearestRestaurantItem(isDark? MyImages.image_healthy_dark : MyImages.image_healthy, "Healthy Food", "8 Mins"),
                     ],
                   ),
                 ],

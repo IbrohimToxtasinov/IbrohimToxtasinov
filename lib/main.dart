@@ -45,7 +45,7 @@ class MyApp extends StatelessWidget {
           child: MaterialApp(
               debugShowCheckedModeBanner: false,
               title: 'Bu title edi',
-              themeMode: ThemeMode.dark,
+              themeMode: ThemeMode.light,
               darkTheme: MyThemes.themeDark,
               theme: MyThemes.themeLight,
               home: child),
