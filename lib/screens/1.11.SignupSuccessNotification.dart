@@ -1,23 +1,34 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:masmas_project/screens/1.16.Home.dart';
 import 'package:masmas_project/utils/colors.dart';
 import 'package:masmas_project/utils/images.dart';
 import 'package:masmas_project/utils/styles.dart';
 
-class SignupSuccessNotification extends StatelessWidget {
+class SignupSuccessNotification extends StatefulWidget {
   const SignupSuccessNotification({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  State<SignupSuccessNotification> createState() => _SignupSuccessNotificationState();
+}
 
+class _SignupSuccessNotificationState extends State<SignupSuccessNotification> {
+  bool isDark = false;
+  @override
+  Widget build(BuildContext context) {
+    isDark = Theme.of(context).brightness == Brightness.dark;
     return Scaffold(
-      backgroundColor: MyColors.C_FEFEFF,
+      backgroundColor: isDark
+        ? MyColors.C_0D0D0D
+        : MyColors.C_FEFEFF,
       body: SafeArea(
         child: Container(
-          decoration: const BoxDecoration(
+          decoration:  BoxDecoration(
             image: DecorationImage(
-              image: AssetImage(MyImages.image_bg2),
+              image: AssetImage(isDark 
+              ? MyImages.image_bg2_dark 
+              : MyImages.image_bg2),
               fit: BoxFit.cover,
               )
             ),
@@ -55,7 +66,7 @@ class SignupSuccessNotification extends StatelessWidget {
                       height: 30.h,
                       child: Text(
                         "Your Profile Is Ready To Use",
-                        style: MyStyles.bentonsansbold400.copyWith(fontSize: 23.sp,color: Colors.black,),
+                        style: MyStyles.bentonsansbold400.copyWith(fontSize: 23.sp,),
                       ),
                     ),
                   ),
@@ -73,7 +84,9 @@ class SignupSuccessNotification extends StatelessWidget {
                         ],
                         )),
                       child: InkWell(
-                  
+                        onTap: () {
+                           Navigator.push(context, MaterialPageRoute(builder: ((context) => Home())));
+                        },
                         child: Center(
                           child: Text("Try Order", style: MyStyles.bentonsansbold400.copyWith(fontSize: 16.sp,color: MyColors.C_FEFEFF),
                           ),

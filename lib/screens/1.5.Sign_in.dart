@@ -15,15 +15,21 @@ class SignIn extends StatefulWidget {
 }
 
 class _SignInState extends State<SignIn> {
+  bool isDark = false;
   @override
   Widget build(BuildContext context) {
+    isDark = Theme.of(context).brightness == Brightness.dark;
     return Scaffold(
-      backgroundColor: MyColors.C_FEFEFF,
+      backgroundColor: isDark
+        ? MyColors.C_0D0D0D
+        : MyColors.C_FEFEFF,
       body: SafeArea(
         child: Container(
-          decoration: const BoxDecoration(
+          decoration: BoxDecoration(
             image: DecorationImage(
-              image: AssetImage(MyImages.image_bg2),
+              image: AssetImage(isDark
+                ? MyImages.image_bg2_dark
+                :MyImages.image_bg2),
               fit: BoxFit.cover,
             ),
           ),
@@ -61,7 +67,7 @@ class _SignInState extends State<SignIn> {
                   child: Text(
                     "Deliever Favorite Food",
                     style: MyStyles.bentonsansbold400
-                        .copyWith(color: Colors.black, fontSize: 13.sp),
+                        .copyWith(fontSize: 13.sp),
                   ),
                 ),
               ),
@@ -78,7 +84,6 @@ class _SignInState extends State<SignIn> {
                     "Sign Up For Free ",
                     style: MyStyles.bentonsansbold400.copyWith(
                         fontWeight: FontWeight.bold,
-                        color: Colors.black,
                         fontSize: 20.sp),
                   ),
                 ),
@@ -91,7 +96,9 @@ class _SignInState extends State<SignIn> {
               padding:
                   const EdgeInsets.symmetric(vertical: 10, horizontal: 10).r,
               decoration: BoxDecoration(
-                color: Colors.white,
+                color: isDark
+                ? Colors.black.withOpacity(0.7)
+                : Colors.white,
                 boxShadow: const [
                   BoxShadow(
                     color: Colors.grey,
@@ -137,7 +144,9 @@ class _SignInState extends State<SignIn> {
               padding:
                   const EdgeInsets.symmetric(vertical: 10, horizontal: 10).r,
               decoration: BoxDecoration(
-                color: Colors.white,
+                color: isDark
+                ? Colors.black.withOpacity(0.7)
+                : Colors.white,
                 boxShadow: const [
                   BoxShadow(
                     color: Colors.grey,
@@ -183,7 +192,9 @@ class _SignInState extends State<SignIn> {
               padding:
                   const EdgeInsets.symmetric(vertical: 10, horizontal: 10).r,
               decoration: BoxDecoration(
-                color: Colors.white,
+                color: isDark
+                ? Colors.black.withOpacity(0.7)
+                : Colors.white,
                 boxShadow: const [
                   BoxShadow(
                     color: Colors.grey,
@@ -221,9 +232,11 @@ class _SignInState extends State<SignIn> {
                         margin: EdgeInsets.only(top: 10, left: 130).r,
                         height: 25.h,
                         width: 25.w,
-                        decoration: const BoxDecoration(
+                        decoration: BoxDecoration(
                           image: DecorationImage(
-                            image: AssetImage(MyImages.image_koz),
+                            image: AssetImage(isDark
+                            ? MyImages.image_koz_dark
+                            : MyImages.image_koz),
                           ),
                         ),
                       ),

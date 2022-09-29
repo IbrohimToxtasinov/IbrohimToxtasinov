@@ -14,10 +14,14 @@ class SignupProcess extends StatefulWidget {
 }
 
 class _SignupProcessState extends State<SignupProcess> {
+  bool isDark = false;
   @override
   Widget build(BuildContext context) {
+    isDark = Theme.of(context).brightness == Brightness.dark;
     return Scaffold(
-      backgroundColor: MyColors.C_FEFEFF,
+      backgroundColor: isDark
+        ? MyColors.C_0D0D0D
+        : MyColors.C_FEFEFF,
       body: SafeArea(
         child: Container(
           decoration: const BoxDecoration(
@@ -47,8 +51,11 @@ class _SignupProcessState extends State<SignupProcess> {
                   width: 450,
                   height: 44,
                   child: Text(
-                    "This data will be displayed in your account profile for security",
-                    style: MyStyles.bentonsansbook400.copyWith(fontSize: 14.sp),
+                    "This data will be displayed in your account\nprofile for security",
+                    style: MyStyles.bentonsansbook400.copyWith(fontSize: 12.sp,height: 1.3, color: isDark
+                    ? Colors.grey
+                    : MyColors.C_0D0D0D,
+                    ),
                   ),
                 ),
               ),
@@ -72,7 +79,9 @@ class _SignupProcessState extends State<SignupProcess> {
       width: 347,
       padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 24).r,
       decoration: BoxDecoration(
-          color: Colors.white,
+          color: isDark
+          ? Colors.black.withOpacity(0.7)
+          : Colors.white,
           boxShadow: const [
             BoxShadow(
               color: Colors.grey,

@@ -6,13 +6,22 @@ import 'package:masmas_project/utils/colors.dart';
 import 'package:masmas_project/utils/images.dart';
 import 'package:masmas_project/utils/styles.dart';
 
-class UploadPreview extends StatelessWidget {
+class UploadPreview extends StatefulWidget {
   const UploadPreview({Key? key}) : super(key: key);
 
   @override
+  State<UploadPreview> createState() => _UploadPreviewState();
+}
+
+class _UploadPreviewState extends State<UploadPreview> {
+  bool isDark = false;
+  @override
   Widget build(BuildContext context) {
+    isDark = Theme.of(context).brightness == Brightness.dark;    
     return Scaffold(
-      backgroundColor: MyColors.C_FEFEFF,
+      backgroundColor: isDark
+        ? MyColors.C_0D0D0D
+        : MyColors.C_FEFEFF,
       body: SafeArea(
         child: Container(
           decoration: const BoxDecoration(
@@ -40,7 +49,10 @@ class UploadPreview extends StatelessWidget {
                 padding: const EdgeInsets.only(left: 5).r,
                 child: Text(
                   "This data will be displayed in your account\nprofile for security",
-                  style: MyStyles.bentonsansbook400.copyWith(fontSize: 14.sp),
+                   style: MyStyles.bentonsansbook400.copyWith(fontSize: 12.sp,height: 1.3, color: isDark
+                    ? Colors.grey
+                    : MyColors.C_0D0D0D,
+                  ),
                 ),
               ),
               SizedBox(height: 50.h),

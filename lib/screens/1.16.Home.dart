@@ -13,12 +13,15 @@ class Home extends StatefulWidget {
   @override
   State<Home> createState() => _HomeState();
 }
-
+  bool isDark = false;
 class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
+    isDark = Theme.of(context).brightness == Brightness.dark;
     return Scaffold(
-      backgroundColor: MyColors.C_FEFEFF,
+      backgroundColor: isDark
+        ? MyColors.C_0D0D0D
+        : MyColors.C_FEFEFF,
       body: SafeArea(
         child: Container(
           padding: const EdgeInsets.only(left: 20, right: 20),
@@ -38,7 +41,9 @@ class _HomeState extends State<Home> {
                   Container(
                     padding: const EdgeInsets.all(8),
                     decoration: BoxDecoration(
-                      color: Colors.white,
+                      color: isDark
+                        ? Colors.black.withOpacity(0.7)
+                        : Colors.white,
                       boxShadow: [
                         BoxShadow(
                           offset: Offset(0, 1),
@@ -61,16 +66,22 @@ class _HomeState extends State<Home> {
                     width: double.infinity,
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(15),
-                        color: MyColors.C_F9A84D.withOpacity(0.2)),
-                    child: const Center(
+                        color : isDark
+                        ? Colors.grey.withOpacity(0.2)
+                        : MyColors.C_F9A84D.withOpacity(0.2)),
+                    child: Center(
                       child: TextField(
                         decoration: InputDecoration(
                           prefixIcon: Icon(
                             Icons.search,
-                            color: MyColors.C_F9A84D,
+                            color: isDark
+                            ? MyColors.C_FEFEFF
+                            : MyColors.C_F9A84D,
                           ),
                           hintText: "What do you want to order?",
-                          hintStyle: TextStyle(color: MyColors.C_F9A84D),
+                          hintStyle: MyStyles.bentonsansregular200.copyWith(color: isDark
+                          ? Colors.grey.withOpacity(1)
+                          : MyColors.C_F9A84D),
                           border: InputBorder.none,
                         ),
                       ),
@@ -82,10 +93,14 @@ class _HomeState extends State<Home> {
                   width: 50,
                   padding: const EdgeInsets.all(12),
                   decoration: BoxDecoration(
-                    color: MyColors.C_F9A84D.withOpacity(0.2),
+                    color: isDark
+                    ? Colors.grey.withOpacity(0.2)
+                    : MyColors.C_F9A84D.withOpacity(0.2),
                     borderRadius: BorderRadius.circular(12),
                   ),
-                  child: SvgPicture.asset(MyImages.icon_settings),
+                  child: SvgPicture.asset(isDark 
+                  ? MyImages.icon_settings_dark
+                  : MyImages.icon_settings),
                 )
               ]),
               const SizedBox(height: 24),
@@ -96,7 +111,9 @@ class _HomeState extends State<Home> {
                 const EdgeInsets.symmetric(vertical: 0, horizontal: 0),
                 decoration: const BoxDecoration(
                   image: DecorationImage(
-                    image: AssetImage(MyImages.image_bg4),
+                    image: AssetImage(isDark
+                    ? 
+                    : MyImages.image_bg4),
                     fit: BoxFit.cover,
                   ),
                   color: MyColors.C_53E88B,

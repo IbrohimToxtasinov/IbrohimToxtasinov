@@ -6,13 +6,22 @@ import 'package:masmas_project/utils/colors.dart';
 import 'package:masmas_project/utils/images.dart';
 import 'package:masmas_project/utils/styles.dart';
 
-class PaymentMethod extends StatelessWidget {
+class PaymentMethod extends StatefulWidget {
   const PaymentMethod({Key? key}) : super(key: key);
 
   @override
+  State<PaymentMethod> createState() => _PaymentMethodState();
+}
+
+class _PaymentMethodState extends State<PaymentMethod> {
+  bool isDark = false;
+  @override
   Widget build(BuildContext context) {
+    isDark = Theme.of(context).brightness == Brightness.dark;    
     return Scaffold(
-      backgroundColor: MyColors.C_FEFEFF,
+      backgroundColor: isDark
+        ? MyColors.C_0D0D0D
+        : MyColors.C_FEFEFF,
       body: SafeArea(
         child: Container(
           decoration: const BoxDecoration(
@@ -40,15 +49,24 @@ class PaymentMethod extends StatelessWidget {
                 padding: EdgeInsets.only(left: 5).r,
                 child: Text(
                   "This data will be displayed in your account\nprofile for security",
-                  style: MyStyles.bentonsansbook400.copyWith(fontSize: 14.sp),
+                    style: MyStyles.bentonsansbook400.copyWith(fontSize: 12.sp,height: 1.3, color: isDark
+                    ? Colors.grey
+                    : MyColors.C_0D0D0D,
+                  ),
                 ),
               ),
               SizedBox(height: 24.h),
-              buildButton(MyImages.image_paypal),
+              buildButton(isDark
+              ? MyImages.image_paypal_dark
+              : MyImages.image_paypal),
               SizedBox(height: 24.h),
-              buildButton(MyImages.image_visa),
+              buildButton(isDark 
+              ? MyImages.image_visa_dark
+              : MyImages.image_visa),
               SizedBox(height: 24.h),
-              buildButton(MyImages.image_payoneer),
+              buildButton(isDark 
+              ? MyImages.image_payoneer_dark
+              : MyImages.image_payoneer),
               buildNextButton(context)
             ],
           ),
@@ -62,7 +80,9 @@ class PaymentMethod extends StatelessWidget {
       height: 73,
       padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 24).r,
       decoration: BoxDecoration(
-          color: Colors.white,
+          color: isDark
+          ? Colors.black.withOpacity(0.7)
+          : Colors.white,
           boxShadow: const [
             BoxShadow(
               color: Colors.grey,

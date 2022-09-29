@@ -6,22 +6,31 @@ import 'package:masmas_project/utils/colors.dart';
 import 'package:masmas_project/utils/images.dart';
 import 'package:masmas_project/utils/styles.dart';
 
-class Onboarding2 extends StatelessWidget {
+class Onboarding2 extends StatefulWidget {
   const Onboarding2({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  State<Onboarding2> createState() => _Onboarding2State();
+}
 
+class _Onboarding2State extends State<Onboarding2> {
+  bool isDark = false;
+
+  @override
+  Widget build(BuildContext context) {
+    isDark = Theme.of(context).brightness == Brightness.dark;
     return Scaffold(
-      backgroundColor: MyColors.C_FEFEFF,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: SafeArea(
         child: Column(children: [
           Container(
             width: 409.w,
             height: 435.h,
-            decoration: const BoxDecoration(
+            decoration: BoxDecoration(
               image: DecorationImage(
-                image: AssetImage(MyImages.image_ponchik),
+                image: AssetImage(isDark
+                ? MyImages.image_ponchik_background
+                :MyImages.image_ponchik),
               ),
             ),
           ),
@@ -29,7 +38,7 @@ class Onboarding2 extends StatelessWidget {
             width: 348.w,
             height: 58.h,
             child: Center(
-              child: Text("Find your Comfort\n        Foodhere",style: MyStyles.bentonsansbold400.copyWith(fontWeight: FontWeight.bold,fontSize: 20.sp),
+              child: Text("Find your Comfort\n        Foodhere",style: MyStyles.bentonsansbold400.copyWith(fontWeight: FontWeight.bold,fontSize: 20.sp,height: 1.3),
               ),
             ),
           ),
@@ -37,7 +46,11 @@ class Onboarding2 extends StatelessWidget {
             width: 300.w,
             height: 44.h,
             child: Center(
-              child: Text("Here You Can find a chef or dish for every\n                 taste and color. Enjoy!",style: MyStyles.bentonsansbook400.copyWith(fontSize: 12.sp),
+              child: Text("Here You Can find a chef or dish for every\n                 taste and color. Enjoy!",
+                style: MyStyles.bentonsansbook400.copyWith(fontSize: 12.sp,height: 1.3, color: isDark
+                ? Colors.grey
+                : MyColors.C_0D0D0D,
+                ),
               ),
             ),
           ),

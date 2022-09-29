@@ -18,10 +18,11 @@ import 'package:masmas_project/screens/1.6.Signup_Process.dart';
 import 'package:masmas_project/screens/1.8.Upload_Photo.dart';
 import 'package:masmas_project/screens/1.9.UploadPreview.dart';
 import 'package:masmas_project/screens/1.10.SetLocation.dart';
+import 'package:masmas_project/utils/themes.dart';
 
-void main() async{
-  runApp(const MyApp());
+void main() async {
   await ScreenUtil.ensureScreenSize();
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -33,18 +34,24 @@ class MyApp extends StatelessWidget {
       designSize: const Size(360, 690),
       minTextAdapt: true,
       splitScreenMode: true,
-      builder: (context , child) {
-        return MaterialApp(
-          debugShowCheckedModeBanner: false,
-          title: 'First Method',
-          theme: ThemeData(
-            primarySwatch: Colors.blue,
-            textTheme: Typography.englishLike2018.apply(fontSizeFactor: 1.sp),
-          ),
-          home: child,
+      builder: (BuildContext context, Widget? child) {
+        return GestureDetector(
+          onTap: () {
+            FocusScopeNode currentFocus = FocusScope.of(context);
+            if (!currentFocus.hasPrimaryFocus) {
+              currentFocus.unfocus();
+            }
+          },
+          child: MaterialApp(
+              debugShowCheckedModeBanner: false,
+              title: 'Bu title edi',
+              themeMode: ThemeMode.dark,
+              darkTheme: MyThemes.themeDark,
+              theme: MyThemes.themeLight,
+              home: child),
         );
       },
-      child: const Home(),
+      child: Onboarding1(),
     );
   }
 }

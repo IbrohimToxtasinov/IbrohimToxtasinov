@@ -14,18 +14,23 @@ class Onboarding3 extends StatefulWidget {
 }
 
 class _Onboarding3State extends State<Onboarding3> {
+  bool isDark = false;
+
   @override
   Widget build(BuildContext context) {
+    isDark = Theme.of(context).brightness == Brightness.dark;
     return Scaffold(
-      backgroundColor: MyColors.C_FEFEFF,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: SafeArea(
         child: Column(children: [
           Container(
             width: 409.w,
             height: 435.h,
-            decoration: const BoxDecoration(
+            decoration: BoxDecoration(
               image: DecorationImage(
-                image: AssetImage(MyImages.image_burger),
+                image: AssetImage(isDark
+                ? MyImages.image_burger_background
+                : MyImages.image_burger),
               ),
             ),
           ),
@@ -36,7 +41,7 @@ class _Onboarding3State extends State<Onboarding3> {
               child: Text(
                 "Food Ninja is Where Your\n     Comfort Food Lives",
                 style: MyStyles.bentonsansbold400
-                    .copyWith(fontWeight: FontWeight.bold, fontSize: 18.sp),
+                    .copyWith(fontWeight: FontWeight.bold, fontSize: 18.sp,height: 1.3),
               ),
             ),
           ),
@@ -46,7 +51,10 @@ class _Onboarding3State extends State<Onboarding3> {
             child: Center(
               child: Text(
                 "Enjoy a fast and smooth food delivery at\n                         your doorstep",
-                style: MyStyles.bentonsansbook400.copyWith(fontSize: 12.sp),
+                 style: MyStyles.bentonsansbook400.copyWith(fontSize: 12.sp,height: 1.3, color: isDark
+                ? Colors.grey
+                : MyColors.C_0D0D0D,
+                ),
               ),
             ),
           ),

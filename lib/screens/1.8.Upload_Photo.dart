@@ -6,13 +6,22 @@ import 'package:masmas_project/utils/colors.dart';
 import 'package:masmas_project/utils/images.dart';
 import 'package:masmas_project/utils/styles.dart';
 
-class UploadPhoto extends StatelessWidget {
+class UploadPhoto extends StatefulWidget {
   const UploadPhoto({Key? key}) : super(key: key);
 
   @override
+  State<UploadPhoto> createState() => _UploadPhotoState();
+}
+
+class _UploadPhotoState extends State<UploadPhoto> {
+  bool isDark =false;
+  @override
   Widget build(BuildContext context) {
+    isDark = Theme.of(context).brightness == Brightness.dark;    
     return Scaffold(
-      backgroundColor: MyColors.C_FEFEFF,
+      backgroundColor: isDark
+        ? MyColors.C_0D0D0D
+        : MyColors.C_FEFEFF,
       body: SafeArea(
         child: Container(
           decoration: const BoxDecoration(
@@ -40,13 +49,16 @@ class UploadPhoto extends StatelessWidget {
                 padding: const EdgeInsets.only(left: 5).r,
                 child: Text(
                   "This data will be displayed in your account\nprofile for security",
-                  style: MyStyles.bentonsansbook400.copyWith(fontSize: 14),
+                   style: MyStyles.bentonsansbook400.copyWith(fontSize: 12.sp,height: 1.3, color: isDark
+                ? Colors.grey
+                : MyColors.C_0D0D0D,
+                  ),
                 ),
               ),
               SizedBox(height: 24.h),
-              buildButton(MyImages.image_gallery),
+              buildButton(MyImages.image_gallery, "From Galery"),
               SizedBox(height: 24.h),
-              buildButton(MyImages.image_takePhoto),
+              buildButton(MyImages.image_camera, "Take Photo"),
               buildNextButton(context)
             ],
           ),
@@ -55,12 +67,15 @@ class UploadPhoto extends StatelessWidget {
     );
   }
 
-  Widget buildButton(String imageName) {
+  Widget buildButton(String imageName, String text) {
     return Container(
       height: 150.h,
+      width: double.infinity.w,
       padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 24).r,
       decoration: BoxDecoration(
-          color: Colors.white,
+          color: isDark
+          ? Colors.black.withOpacity(0.7)
+          : Colors.white,
           boxShadow: const [
             BoxShadow(
               color: Colors.grey,
@@ -69,11 +84,23 @@ class UploadPhoto extends StatelessWidget {
             ),
           ],
           borderRadius: BorderRadius.all(Radius.circular(20.r))),
-      child: Center(
-        child: Container(
-          height: 100.h,
-          child: Image.asset(imageName),
-        ),
+      child: Column(
+        children: [
+          Container(
+            height: 80.h,
+            child: Image.asset(imageName),
+          ),
+          SizedBox(height: 10.h,),
+          Container(
+            height: 25.h,
+            width: 88.w,
+            child: Center(
+              child: Text(text, style: MyStyles.bentonsansbold400.copyWith(fontSize: 14),) 
+              ),
+          ),
+          
+
+        ],
       ),
     );
   }

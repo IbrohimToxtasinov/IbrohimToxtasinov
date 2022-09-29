@@ -14,6 +14,7 @@ class Onboarding1 extends StatefulWidget {
 }
 
 class _Onboarding1State extends State<Onboarding1> {
+  bool isDark = false;
   @override
   void initState(){
     super.initState();
@@ -23,21 +24,25 @@ class _Onboarding1State extends State<Onboarding1> {
     );
   }
   Widget build(BuildContext context) {
-
+    isDark = Theme.of(context).brightness == Brightness.dark;
     return Scaffold(
-      backgroundColor: MyColors.C_FEFEFF,
+      backgroundColor: isDark
+        ? MyColors.C_0D0D0D
+        : MyColors.C_FEFEFF,
       body: SafeArea(
         child: Container(
-          decoration: const BoxDecoration(
+          decoration: BoxDecoration(
             image: DecorationImage(
-              image: AssetImage(MyImages.image_bg2),
+              image: AssetImage(isDark 
+              ? MyImages.image_bg2_dark 
+              : MyImages.image_bg2),
               fit: BoxFit.cover,
             ),
           ),
           child: Column(children: [
             Center(
               child: Container(
-                margin: EdgeInsets.only(top: 272).r,
+                margin: EdgeInsets.only(top: 250).r,
                 width: 175.r,
                 height: 139.h,
                 decoration: const BoxDecoration(
@@ -62,7 +67,7 @@ class _Onboarding1State extends State<Onboarding1> {
                 width: 162.r,
                 height: 16.h,
                 child: Center(
-                  child: Text("Deliever Favorite Food",style: MyStyles.bentonsansbold400.copyWith(color: Colors.black, fontSize: 13.sp),
+                  child: Text("Deliever Favorite Food",style: MyStyles.bentonsansbold400.copyWith(fontSize: 13.sp),
                   ),
                 ),
               ),
